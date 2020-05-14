@@ -12,8 +12,8 @@ public class RSA extends RSAUtilities {
 
     public RSA() {
         Logger.info("Generating primes...");
-        this.p = generatePrime(10, 1000000000);
-        this.q = generatePrime(10, 1000000000);
+        this.p = generatePrime(5, 10000000);
+        this.q = generatePrime(5, 10000000);
         Initialization();
     }
 
@@ -32,6 +32,6 @@ public class RSA extends RSAUtilities {
         Logger.info("Public Key generated: \n e: {}\n n: {}",
                 this.publicKey.getE(),this.publicKey.getN() );
         this.privateKey = new PrivateKey(EEA(phi, this.publicKey.getE()));
-        Logger.info("Private Key generated: {}", this.privateKey.getD());
+        Logger.info("Private Key generated: \n d: {}", this.privateKey.getD());
     }
 }

@@ -18,7 +18,6 @@ public abstract class RSAUtilities extends MillerRabinUtilities {
      * e random változót generálja le.
      */
     protected long generateVariableE(long phi) {
-        Logger.info("Generating variable e...");
         long e = ThreadLocalRandom.current().nextLong(2, phi-1);
         return GCD(e,phi)  == 1 ? e : generateVariableE(phi);
     }
