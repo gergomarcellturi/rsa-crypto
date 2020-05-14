@@ -10,25 +10,24 @@ public class BaseUtilities {
         return GCD(b, a % b);
     }
 
-    public long EEA(long a, long b) {
+    public long EEA(long phi, long e) {
 
-        long x = 0, y = 1, r1= a, r2 = b;
-        long mod;
-        long u = 0;
+        long r1 = phi, r2 = e, u1 = 0, u2 = 1, q = phi/e, result = 0;
+        long swap;
 
-        while (r2 != 1) {
-            mod = r1%r2;
-            u = x - (y*mod);
-            x = y;
-            y = u;
-            r1 = r2;
-            r2 = mod;
+        while ( r2 != 1 ) {
+            result = u1 - ( u2 * q);
+            swap = r2;
+            r2 = r1 % r2;
+            r1 = swap;
+            q = r1 / r2;
+            u1 = u2;
+            u2 = result;
         }
 
-        while ( u < 0 ) {
-            u += b;
-        }
+        while ( result < 0 )
+            result += phi;
 
-        return u;
+        return result;
     }
 }
