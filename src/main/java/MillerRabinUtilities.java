@@ -26,7 +26,7 @@ public abstract class MillerRabinUtilities extends BaseUtilities {
      */
     protected boolean MillerRabin(long prime, long d) {
         long a = generateBase(prime);
-        long x = ModularExponentiation(a, d, prime);
+        long x = ModularExp(a, d, prime);
         return  x == 1 || MillerRabinIterative(x, d, prime);
     }
 
@@ -54,26 +54,5 @@ public abstract class MillerRabinUtilities extends BaseUtilities {
     protected long generateBase(long prime) {
         long result = ThreadLocalRandom.current().nextLong(2, prime);
         return GCD(prime, result) == 1 ? result : generateBase(prime);
-    }
-
-    /**
-     * Visszaadja: (ExpBase ^ ExpPower) % ExpDivider
-     */
-    protected long ModularExponentiation( long ExpBase, long ExpPower, long ExpDivider ) {
-
-        long Result = 1;
-        ExpBase = ExpBase % ExpDivider;
-
-        while (ExpPower > 0) {
-
-            if ( ExpPower % 2 == 1)
-                Result = (Result * ExpBase) % ExpDivider;
-
-            ExpPower = ExpPower / 2;
-            ExpBase = (ExpBase * ExpBase) % ExpDivider;
-
-        }
-
-        return Result;
     }
 }

@@ -12,8 +12,8 @@ public class RSA extends RSAUtilities {
 
     public RSA() {
         Logger.info("Generating primes...\n");
-        this.p = generatePrime(5, 10000000);
-        this.q = generatePrime(5, 10000000);
+        this.p = generatePrime(5, 10000);
+        this.q = generatePrime(5, 10000);
         Initialization();
     }
 
@@ -22,6 +22,14 @@ public class RSA extends RSAUtilities {
         this.p = this.generatePrime(minimum, maximum);
         this.q = this.generatePrime(minimum, maximum);
         Initialization();
+    }
+
+    public long Encrypt(long message) {
+        return this.ModularExp(message, this.publicKey.getE(), this.publicKey.getN());
+    }
+
+    public long Decrypt(long message) {
+        return this.ModularExp(message, this.privateKey.getD(), this.publicKey.getN());
     }
 
     private void Initialization() {
