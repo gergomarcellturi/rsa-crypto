@@ -1,3 +1,5 @@
+import org.tinylog.Logger;
+
 public class BaseUtilities {
 
     /**
@@ -10,24 +12,12 @@ public class BaseUtilities {
         return GCD(b, a % b);
     }
 
-    public long EEA(long phi, long e) {
-
-        long r1 = phi, r2 = e, u1 = 0, u2 = 1, q = phi/e, result = 0;
-        long swap;
-
-        while ( r2 != 1 ) {
-            result = u1 - ( u2 * q);
-            swap = r2;
-            r2 = r1 % r2;
-            r1 = swap;
-            q = r1 / r2;
-            u1 = u2;
-            u2 = result;
+    public long EEA(long phi, long e, long u1, long u2, long modolus) {
+        if ( e == 1) {
+            while(u2<0)
+                u2 += modolus;
+            return u2;
         }
-
-        while ( result < 0 )
-            result += phi;
-
-        return result;
+        return EEA(e, phi%e, u2, u1-(u2 * (phi/e)), modolus);
     }
 }

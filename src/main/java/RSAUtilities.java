@@ -21,4 +21,8 @@ public abstract class RSAUtilities extends MillerRabinUtilities {
         long e = ThreadLocalRandom.current().nextLong(2, phi-1);
         return GCD(e,phi)  == 1 ? e : generateVariableE(phi);
     }
+
+    protected long calculateD(long phi, long e) {
+        return EEA(phi, e, 0, 1, phi);
+    }
 }
