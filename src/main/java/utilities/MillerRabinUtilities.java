@@ -1,3 +1,5 @@
+package utilities;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class MillerRabinUtilities extends BaseUtilities {

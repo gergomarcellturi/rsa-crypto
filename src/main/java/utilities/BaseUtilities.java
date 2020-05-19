@@ -1,4 +1,4 @@
-import org.tinylog.Logger;
+package utilities;
 
 public abstract class BaseUtilities {
 

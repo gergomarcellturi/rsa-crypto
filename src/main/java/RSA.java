@@ -1,6 +1,7 @@
 import model.PrivateKey;
 import model.PublicKey;
 import org.tinylog.Logger;
+import utilities.RSAUtilities;
 
 public class RSA extends RSAUtilities {
 
